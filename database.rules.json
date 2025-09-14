@@ -1,0 +1,16 @@
+{
+  "rules": {
+    "alerts": {
+      ".indexOn": ["uploaded_at", "severity", "alert_type", "ip_address"],
+      ".read": "auth != null",
+      ".write": "auth != null",
+      "$alertId": {
+        ".validate": "newData.hasChildren(['alert_type', 'severity', 'ip_address', 'uploaded_at'])"
+      }
+    },
+    "users": {
+      ".read": "auth != null",
+      ".write": "auth != null"
+    }
+  }
+}

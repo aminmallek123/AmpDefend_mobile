@@ -1,0 +1,49 @@
+{
+  "project_info": {
+    "project_number": "862045725600",
+    "firebase_url": "https://ampdefender-9bf8e-default-rtdb.firebaseio.com",
+    "project_id": "ampdefender-9bf8e",
+    "storage_bucket": "ampdefender-9bf8e.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:862045725600:android:a6d4ab02b0f8f3fe37bac5",
+        "android_client_info": {
+          "package_name": "com.example.ampdefend"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAsTiLsylhSM30jL7qlgnsYKoLI9_SulLw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:862045725600:android:901c7807c13252ad37bac5",
+        "android_client_info": {
+          "package_name": "com.example.flutter_application"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAsTiLsylhSM30jL7qlgnsYKoLI9_SulLw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

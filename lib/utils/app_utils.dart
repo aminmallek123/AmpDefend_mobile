@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class AppUtils {
-  /// Formate une date en français
+  /// Formats a date in French format
   static String formatDate(DateTime date) {
     final months = [
       'janvier', 'février', 'mars', 'avril', 'mai', 'juin',
@@ -21,28 +21,28 @@ class AppUtils {
     return readingTime < 1 ? 1 : readingTime;
   }
   
-  /// Valide une adresse email
+  /// Validates an email address
   static bool isValidEmail(String email) {
     return RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(email);
   }
   
-  /// Valide un numéro de téléphone français
+  /// Validates a French phone number
   static bool isValidPhoneNumber(String phone) {
     final cleanPhone = phone.replaceAll(RegExp(r'[\s\-\.\(\)]'), '');
     return RegExp(r'^(\+33|0)[1-9](\d{8})$').hasMatch(cleanPhone);
   }
   
-  /// Ouvre une URL dans le navigateur
+  /// Opens a URL in the browser
   static Future<void> launchURL(String url) async {
     final uri = Uri.parse(url);
     if (await canLaunchUrl(uri)) {
       await launchUrl(uri, mode: LaunchMode.externalApplication);
     } else {
-      debugPrint('Impossible d\'ouvrir l\'URL: $url');
+      debugPrint('Unable to open URL: $url');
     }
   }
   
-  /// Ouvre l'application email avec une adresse pré-remplie
+  /// Opens the email app with a pre-filled address
   static Future<void> launchEmail(String email, {String? subject, String? body}) async {
     final uri = Uri(
       scheme: 'mailto',
@@ -56,7 +56,7 @@ class AppUtils {
     if (await canLaunchUrl(uri)) {
       await launchUrl(uri);
     } else {
-      debugPrint('Impossible d\'ouvrir l\'email: $email');
+      debugPrint('Unable to open email: $email');
     }
   }
   

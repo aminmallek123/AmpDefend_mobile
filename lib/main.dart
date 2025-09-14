@@ -31,7 +31,7 @@ class _AMPDefendAppState extends State<AMPDefendApp> {
   @override
   void initState() {
     super.initState();
-    // Enregistrer la fonction de basculement de thème
+    // Register the theme toggle function
     ThemeManager().setToggleThemeCallback(toggleTheme);
   }
 

@@ -2,14 +2,14 @@ class AppConstants {
   // App info
   static const String appName = 'AMPDefend';
   static const String appTagline = 'Smart Honeypot Shield';
-  static const String appDescription = 'Protégez votre infrastructure avec des solutions de cybersécurité intelligentes et proactives';
+  static const String appDescription = 'Protect your infrastructure with intelligent and proactive cybersecurity solutions';
   static const String appVersion = '1.0.0';
   
   // Company info
   static const String companyName = 'AMPDefend SAS';
   static const String companyEmail = 'contact@ampdefend.com';
   static const String companyPhone = '+33 1 23 45 67 89';
-  static const String companyAddress = '123 Avenue de la Cybersécurité\n75001 Paris, France';
+  static const String companyAddress = '123 Cybersecurity Avenue\n75001 Paris, France';
   
   // Social links
   static const String linkedInUrl = 'https://linkedin.com/company/ampdefend';
@@ -17,7 +17,7 @@ class AppConstants {
   static const String githubUrl = 'https://github.com/ampdefend';
   static const String youtubeUrl = 'https://youtube.com/c/ampdefend';
   
-  // API endpoints (à configurer selon l'environnement)
+  // API endpoints (to be configured according to environment)
   static const String baseUrl = 'https://api.ampdefend.com';
   static const String contactEndpoint = '/contact';
   static const String blogEndpoint = '/blog';
@@ -56,13 +56,13 @@ class AppConstants {
   ];
   
   // Error messages
-  static const String networkErrorMessage = 'Erreur de connexion. Vérifiez votre connexion internet.';
-  static const String genericErrorMessage = 'Une erreur est survenue. Veuillez réessayer.';
-  static const String validationErrorMessage = 'Veuillez vérifier les informations saisies.';
+  static const String networkErrorMessage = 'Connection error. Check your internet connection.';
+  static const String genericErrorMessage = 'An error occurred. Please try again.';
+  static const String validationErrorMessage = 'Please check the entered information.';
   
   // Success messages
-  static const String contactSuccessMessage = 'Votre message a été envoyé avec succès !';
-  static const String subscriptionSuccessMessage = 'Inscription réussie à notre newsletter !';
+  static const String contactSuccessMessage = 'Your message has been sent successfully!';
+  static const String subscriptionSuccessMessage = 'Successfully subscribed to our newsletter!';
 }
 
 class AppAssets {

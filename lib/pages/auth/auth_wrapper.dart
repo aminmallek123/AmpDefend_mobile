@@ -6,8 +6,8 @@ class AuthWrapper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Toujours afficher la page d'accueil
-    // Elle gère l'affichage conditionnel des boutons selon l'état d'authentification
+    // Always display the home page
+    // It handles conditional display of buttons based on authentication state
     return const HomePage();
   }
 }

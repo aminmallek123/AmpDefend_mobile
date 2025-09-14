@@ -5,12 +5,12 @@ class AuthService {
   static final FirebaseAuth _auth = FirebaseAuth.instance;
   static GoogleSignIn? _googleSignIn;
   
-  // Initialisation conditionnelle de GoogleSignIn
+  // Conditional initialization of GoogleSignIn
   static GoogleSignIn get googleSignIn {
     _googleSignIn ??= GoogleSignIn(
       scopes: ['email'],
-      // Configuration spécifique pour éviter les erreurs de type cast
-      serverClientId: null, // Utiliser la configuration par défaut
+      // Specific configuration to avoid type cast errors
+      serverClientId: null, // Use default configuration
     );
     return _googleSignIn!;
   }
@@ -18,18 +18,18 @@ class AuthService {
   // Obtenir l'utilisateur actuel
   static User? get currentUser => _auth.currentUser;
 
-  // Stream pour écouter les changements d'état d'authentification
+  // Stream to listen to authentication state changes
   static Stream<User?> get authStateChanges => _auth.authStateChanges();
 
-  // Connexion avec email et mot de passe
+  // Login with email and password
   static Future<UserCredential?> signInWithEmail(String email, String password) async {
     try {
-      // Validation des entrées
+      // Input validation
       if (email.trim().isEmpty) {
-        throw 'L\'email ne peut pas être vide';
+        throw 'Email cannot be empty';
       }
       if (password.isEmpty) {
-        throw 'Le mot de passe ne peut pas être vide';
+        throw 'Password cannot be empty';
       }
       
       UserCredential result = await _auth.signInWithEmailAndPassword(
@@ -40,11 +40,11 @@ class AuthService {
     } on FirebaseAuthException catch (e) {
       throw _handleAuthException(e);
     } catch (e) {
-      throw 'Erreur de connexion: $e';
+      throw 'Login error: $e';
     }
   }
 
-  // Inscription avec email et mot de passe
+  // Sign up with email and password
   static Future<UserCredential?> signUpWithEmail(String email, String password) async {
     try {
       UserCredential result = await _auth.createUserWithEmailAndPassword(
@@ -57,53 +57,53 @@ class AuthService {
     }
   }
 
-  // Connexion avec Google (version corrigée)
+  // Google Sign-In (fixed version)
   static Future<UserCredential?> signInWithGoogle() async {
     try {
-      // Nettoyer d'abord toute session précédente
+      // First clean up any previous session
       await googleSignIn.signOut();
       await _auth.signOut();
       
-      // Nouvelle tentative de connexion
+      // New connection attempt
       final GoogleSignInAccount? googleUser = await googleSignIn.signIn();
       
       if (googleUser == null) {
-        // L'utilisateur a annulé la connexion
+        // User cancelled the connection
         return null;
       }
 
-      // Obtenir les détails d'authentification
+      // Get authentication details
       final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
       
-      // Créer les credentials Firebase
+      // Create Firebase credentials
       final credential = GoogleAuthProvider.credential(
         accessToken: googleAuth.accessToken,
         idToken: googleAuth.idToken,
       );
 
-      // Se connecter à Firebase
+      // Connect to Firebase
       final UserCredential userCredential = await _auth.signInWithCredential(credential);
       
       return userCredential;
       
     } on FirebaseAuthException catch (e) {
-      // Nettoyer en cas d'erreur Firebase
+      // Clean up in case of Firebase error
       await _cleanupGoogleSignIn();
       throw _handleAuthException(e);
     } catch (e) {
-      // Nettoyer en cas d'erreur générale
+      // Clean up in case of general error
       await _cleanupGoogleSignIn();
       
-      // Gestion spécifique de l'erreur PigeonUserDetails
+      // Specific handling of PigeonUserDetails error
       if (e.toString().contains('PigeonUserDetails')) {
-        throw 'Erreur temporaire de Google Sign-In. Veuillez réessayer ou utilisez la connexion par email.';
+        throw 'Temporary Google Sign-In error. Please try again or use email login.';
       }
       
-      throw 'Erreur lors de la connexion avec Google: ${e.toString()}';
+      throw 'Error during Google Sign-In: ${e.toString()}';
     }
   }
   
-  // Méthode de nettoyage pour Google Sign-In
+  // Cleanup method for Google Sign-In
   static Future<void> _cleanupGoogleSignIn() async {
     try {
       await googleSignIn.signOut();
@@ -113,7 +113,7 @@ class AuthService {
     }
   }
 
-  // Réinitialisation du mot de passe
+  // Password reset
   static Future<void> resetPassword(String email) async {
     try {
       await _auth.sendPasswordResetEmail(email: email);
@@ -122,18 +122,18 @@ class AuthService {
     }
   }
 
-  // Déconnexion
+  // Sign out
   static Future<void> signOut() async {
     try {
-      // Déconnecter Google Sign-In d'abord (si connecté)
+      // Sign out Google Sign-In first (if signed in)
       if (await googleSignIn.isSignedIn()) {
         await googleSignIn.signOut();
       }
-      // Puis déconnecter Firebase Auth
+      // Then sign out Firebase Auth
       await _auth.signOut();
     } catch (e) {
-      // Même en cas d'erreur, on force la déconnexion locale
-      print('Erreur lors de la déconnexion: $e');
+      // Even in case of error, force local logout
+      print('Error during sign out: $e');
       try {
         await googleSignIn.signOut();
       } catch (_) {}
@@ -146,25 +146,25 @@ class AuthService {
   // Version alternative de Google Sign-In pour contourner l'erreur PigeonUserDetails
   static Future<UserCredential?> signInWithGoogleAlternative() async {
     try {
-      // Créer une nouvelle instance GoogleSignIn pour éviter les conflits
+      // Create a new GoogleSignIn instance to avoid conflicts
       final GoogleSignIn freshGoogleSignIn = GoogleSignIn(
         scopes: ['email'],
       );
       
-      // S'assurer qu'on part d'un état propre
+      // Ensure we start from a clean state
       await freshGoogleSignIn.signOut();
       
-      // Tenter la connexion
+      // Attempt connection
       final GoogleSignInAccount? googleUser = await freshGoogleSignIn.signIn();
       
       if (googleUser == null) {
-        return null; // Utilisateur a annulé
+        return null; // User cancelled
       }
 
       final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
       
       if (googleAuth.accessToken == null && googleAuth.idToken == null) {
-        throw 'Impossible d\'obtenir les tokens d\'authentification';
+        throw 'Unable to obtain authentication tokens';
       }
       
       final credential = GoogleAuthProvider.credential(
@@ -177,29 +177,29 @@ class AuthService {
     } catch (e) {
       if (e.toString().contains('PigeonUserDetails') || 
           e.toString().contains('List<Object?>')) {
-        throw 'Google Sign-In temporairement indisponible. Utilisez la connexion par email.';
+        throw 'Google Sign-In temporarily unavailable. Use email login.';
       }
-      throw 'Erreur Google Sign-In: ${e.toString()}';
+      throw 'Google Sign-In error: ${e.toString()}';
     }
   }
   static String _handleAuthException(FirebaseAuthException e) {
     switch (e.code) {
       case 'user-not-found':
-        return 'Aucun utilisateur trouvé avec cet email.';
+        return 'No user found with this email.';
       case 'wrong-password':
-        return 'Mot de passe incorrect.';
+        return 'Incorrect password.';
       case 'email-already-in-use':
-        return 'Cet email est déjà utilisé.';
+        return 'This email is already in use.';
       case 'weak-password':
-        return 'Le mot de passe est trop faible.';
+        return 'Password is too weak.';
       case 'invalid-email':
-        return 'Email invalide.';
+        return 'Invalid email.';
       case 'invalid-credential':
-        return 'Identifiants invalides.';
+        return 'Invalid credentials.';
       case 'too-many-requests':
-        return 'Trop de tentatives. Réessayez plus tard.';
+        return 'Too many attempts. Try again later.';
       default:
-        return 'Erreur d\'authentification: ${e.message}';
+        return 'Authentication error: ${e.message}';
     }
   }
 }

@@ -25,7 +25,7 @@ class _DashboardPageState extends State<DashboardPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(
-        title: 'Dashboard Sécurité',
+        title: 'Security Dashboard',
         showBackButton: true,
         actions: [
           IconButton(
@@ -46,13 +46,13 @@ class _DashboardPageState extends State<DashboardPage> {
                   await AlertService.addMultipleTestAlerts();
                   if (mounted) {
                     ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text('Alertes de test ajoutées à Firebase!')),
+                      const SnackBar(content: Text('Test alerts added to Firebase!')),
                     );
                   }
                 } catch (e) {
                   if (mounted) {
                     ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text('Erreur: $e')),
+                      SnackBar(content: Text('Error: $e')),
                     );
                   }
                 }
@@ -65,21 +65,21 @@ class _DashboardPageState extends State<DashboardPage> {
                 value: 'toggle_theme',
                 child: ListTile(
                   leading: Icon(Icons.brightness_6),
-                  title: Text('Mode Sombre'),
+                  title: Text('Dark Mode'),
                 ),
               ),
               const PopupMenuItem(
                 value: 'test_alert',
                 child: ListTile(
                   leading: Icon(Icons.bug_report),
-                  title: Text('Ajouter test'),
+                  title: Text('Add Test'),
                 ),
               ),
               const PopupMenuItem(
                 value: 'logout',
                 child: ListTile(
                   leading: Icon(Icons.logout),
-                  title: Text('Déconnexion'),
+                  title: Text('Logout'),
                 ),
               ),
             ],
@@ -95,19 +95,19 @@ class _DashboardPageState extends State<DashboardPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // En-tête avec informations utilisateur
+              // Header with user information
               _buildUserHeader(),
               const SizedBox(height: 24),
               
-              // Statistiques des alertes
+              // Alert statistics
               _buildStatisticsSection(),
               const SizedBox(height: 24),
               
-              // Filtres
+              // Filters
               _buildFiltersSection(),
               const SizedBox(height: 16),
               
-              // Liste des alertes
+              // Alert list
               _buildAlertsSection(),
             ],
           ),
@@ -140,13 +140,13 @@ class _DashboardPageState extends State<DashboardPage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Bienvenue ${user?.displayName ?? user?.email ?? 'Utilisateur'}',
+                        'Welcome ${user?.displayName ?? user?.email ?? 'User'}',
                         style: Theme.of(context).textTheme.titleLarge?.copyWith(
                           fontWeight: FontWeight.bold,
                         ),
                       ),
                       Text(
-                        'Dashboard AmpDefend - Surveillance en temps réel',
+                        'AmpDefend Dashboard - Real-time Monitoring',
                         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                           color: Colors.grey[600],
                         ),
@@ -159,7 +159,7 @@ class _DashboardPageState extends State<DashboardPage> {
                           borderRadius: BorderRadius.circular(12),
                         ),
                         child: const Text(
-                          '🟢 Système actif',
+                          '🟢 System active',
                           style: TextStyle(
                             color: Colors.green,
                             fontWeight: FontWeight.bold,
@@ -181,7 +181,7 @@ class _DashboardPageState extends State<DashboardPage> {
                       context.go('/statistics');
                     },
                     icon: const Icon(Icons.analytics),
-                    label: const Text('Statistiques détaillées'),
+                    label: const Text('Detailed Statistics'),
                     style: ElevatedButton.styleFrom(
                       padding: const EdgeInsets.symmetric(vertical: 12),
                     ),
@@ -191,10 +191,10 @@ class _DashboardPageState extends State<DashboardPage> {
                 Expanded(
                   child: OutlinedButton.icon(
                     onPressed: () {
-                      // TODO: Ajouter page de configuration
+                      // TODO: Add configuration page
                     },
                     icon: const Icon(Icons.settings),
-                    label: const Text('Configuration'),
+                    label: const Text('Settings'),
                     style: OutlinedButton.styleFrom(
                       padding: const EdgeInsets.symmetric(vertical: 12),
                     ),
@@ -220,7 +220,7 @@ class _DashboardPageState extends State<DashboardPage> {
           return Card(
             child: Padding(
               padding: const EdgeInsets.all(16),
-              child: Text('Erreur: ${snapshot.error}'),
+              child: Text('Error: ${snapshot.error}'),
             ),
           );
         }
@@ -230,7 +230,7 @@ class _DashboardPageState extends State<DashboardPage> {
           return const Card(
             child: Padding(
               padding: EdgeInsets.all(16),
-              child: Text('Aucune donnée disponible'),
+              child: Text('No data available'),
             ),
           );
         }
@@ -242,7 +242,7 @@ class _DashboardPageState extends State<DashboardPage> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  'Statistiques des alertes',
+                  'Alert statistics',
                   style: Theme.of(context).textTheme.titleLarge?.copyWith(
                     fontWeight: FontWeight.bold,
                   ),
@@ -252,7 +252,7 @@ class _DashboardPageState extends State<DashboardPage> {
                     context.go('/statistics');
                   },
                   icon: const Icon(Icons.bar_chart),
-                  label: const Text('Voir détails'),
+                  label: const Text('View details'),
                 ),
               ],
             ),
@@ -263,49 +263,49 @@ class _DashboardPageState extends State<DashboardPage> {
               crossAxisCount: 2,
               crossAxisSpacing: 16,
               mainAxisSpacing: 16,
-              childAspectRatio: 1.4, // Augmenter pour plus d'espace vertical
+              childAspectRatio: 1.4, // Increase for more vertical space
               children: [
                 _buildStatCard(
                   'Total',
                   '${stats.total}',
                   Icons.notifications,
                   Colors.blue,
-                  'Toutes les alertes',
+                  'All alerts',
                 ),
                 _buildStatCard(
-                  'Dernières 24h',
+                  'Last 24h',
                   '${stats.last24Hours}',
                   Icons.access_time,
                   Colors.orange,
-                  'Alertes récentes',
+                  'Recent alerts',
                 ),
                 _buildStatCard(
-                  'Critiques',
+                  'Critical',
                   '${stats.critical}',
                   Icons.warning,
                   Colors.red,
-                  'Menaces sévères',
+                  'Severe threats',
                 ),
                 _buildStatCard(
-                  'Élevées',
+                  'High',
                   '${stats.high}',
                   Icons.priority_high,
                   Colors.deepOrange,
-                  'Risques importants',
+                  'Important risks',
                 ),
                 _buildStatCard(
-                  'Moyennes',
+                  'Medium',
                   '${stats.medium}',
                   Icons.info,
                   Colors.amber,
-                  'Surveillances actives',
+                  'Active monitoring',
                 ),
                 _buildStatCard(
-                  'Faibles',
+                  'Low',
                   '${stats.low}',
                   Icons.check_circle,
                   Colors.green,
-                  'Alertes mineures',
+                  'Minor alerts',
                 ),
               ],
             ),
@@ -318,20 +318,20 @@ class _DashboardPageState extends State<DashboardPage> {
   Widget _buildStatCard(String title, String value, IconData icon, Color color, [String? description]) {
     return Card(
       child: Padding(
-        padding: const EdgeInsets.all(12), // Réduire le padding
+        padding: const EdgeInsets.all(12), // Reduce padding
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           mainAxisSize: MainAxisSize.min, // Taille minimale
           children: [
-            Icon(icon, size: 24, color: color), // Réduire la taille
-            const SizedBox(height: 6), // Réduire l'espacement
+            Icon(icon, size: 24, color: color), // Reduce size
+            const SizedBox(height: 6), // Reduce spacing
             Flexible(
               child: Text(
                 value,
                 style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                   fontWeight: FontWeight.bold,
                   color: color,
-                  fontSize: 20, // Réduire la taille de police
+                  fontSize: 20, // Reduce font size
                 ),
                 overflow: TextOverflow.ellipsis,
               ),
@@ -342,7 +342,7 @@ class _DashboardPageState extends State<DashboardPage> {
                 title,
                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                   fontWeight: FontWeight.w600,
-                  fontSize: 12, // Taille plus petite
+                  fontSize: 12, // Smaller size
                 ),
                 textAlign: TextAlign.center,
                 overflow: TextOverflow.ellipsis,
@@ -356,10 +356,10 @@ class _DashboardPageState extends State<DashboardPage> {
                   description,
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
                     color: Colors.grey[600],
-                    fontSize: 9, // Plus petit
+                    fontSize: 9, // Smaller
                   ),
                   textAlign: TextAlign.center,
-                  maxLines: 1, // Une seule ligne
+                  maxLines: 1, // Single line
                   overflow: TextOverflow.ellipsis,
                 ),
               ),
@@ -378,7 +378,7 @@ class _DashboardPageState extends State<DashboardPage> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              'Filtres',
+              'Filters',
               style: Theme.of(context).textTheme.titleMedium?.copyWith(
                 fontWeight: FontWeight.bold,
               ),
@@ -395,7 +395,7 @@ class _DashboardPageState extends State<DashboardPage> {
                     ? Theme.of(context).colorScheme.primary 
                     : null,
               ),
-              tooltip: 'Filtres temporels',
+              tooltip: 'Time filters',
             ),
           ],
         ),
@@ -404,11 +404,11 @@ class _DashboardPageState extends State<DashboardPage> {
           scrollDirection: Axis.horizontal,
           child: Row(
             children: [
-              _buildFilterChip('all', 'Toutes'),
-              _buildFilterChip('critical', 'Critiques'),
-              _buildFilterChip('high', 'Élevées'),
-              _buildFilterChip('medium', 'Moyennes'),
-              _buildFilterChip('low', 'Faibles'),
+              _buildFilterChip('all', 'All'),
+              _buildFilterChip('critical', 'Critical'),
+              _buildFilterChip('high', 'High'),
+              _buildFilterChip('medium', 'Medium'),
+              _buildFilterChip('low', 'Low'),
               _buildFilterChip('intrusion_detected', 'Intrusions'),
               _buildFilterChip('vpn_detected', 'VPN'),
               _buildFilterChip('malware_detected', 'Malware'),
@@ -431,7 +431,7 @@ class _DashboardPageState extends State<DashboardPage> {
           ),
         ],
         
-        // Indicateur de filtre actif
+        // Active filter indicator
         if (_startDate != null || _endDate != null || _selectedFilter != 'all') ...[
           const SizedBox(height: 8),
           Container(
@@ -467,7 +467,7 @@ class _DashboardPageState extends State<DashboardPage> {
                     });
                     ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(
-                        content: Text('Tous les filtres supprimés'),
+                        content: Text('All filters removed'),
                         duration: Duration(seconds: 2),
                         behavior: SnackBarBehavior.floating,
                       ),
@@ -508,7 +508,7 @@ class _DashboardPageState extends State<DashboardPage> {
           // Afficher un message informatif
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
-              content: Text('Filtre appliqué: $label'),
+              content: Text('Filter applied: $label'),
               duration: const Duration(seconds: 2),
               behavior: SnackBarBehavior.floating,
             ),
@@ -565,11 +565,11 @@ class _DashboardPageState extends State<DashboardPage> {
                 children: [
                   Icon(Icons.error, size: 48, color: Colors.red),
                   const SizedBox(height: 16),
-                  Text('Erreur de connexion: ${snapshot.error}'),
+                  Text('Connection error: ${snapshot.error}'),
                   const SizedBox(height: 16),
                   ElevatedButton(
                     onPressed: () => setState(() {}),
-                    child: const Text('Réessayer'),
+                    child: const Text('Retry'),
                   ),
                 ],
               ),
@@ -592,14 +592,14 @@ class _DashboardPageState extends State<DashboardPage> {
                   ),
                   const SizedBox(height: 16),
                   Text(
-                    'Aucune alerte trouvée',
+                    'No alerts found',
                     style: Theme.of(context).textTheme.titleMedium?.copyWith(
                       color: Colors.grey[600],
                     ),
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    'Les alertes de votre Raspberry Pi apparaîtront ici',
+                    'Your Raspberry Pi alerts will appear here',
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                       color: Colors.grey[500],
                     ),
@@ -618,16 +618,16 @@ class _DashboardPageState extends State<DashboardPage> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  'Alertes récentes (${alerts.length})',
+                  'Recent alerts (${alerts.length})',
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(
                     fontWeight: FontWeight.bold,
                   ),
                 ),
                 TextButton(
                   onPressed: () {
-                    // Naviguer vers la page détaillée des alertes
+                    // Navigate to detailed alerts page
                   },
-                  child: const Text('Voir tout'),
+                  child: const Text('View all'),
                 ),
               ],
             ),
@@ -647,26 +647,26 @@ class _DashboardPageState extends State<DashboardPage> {
   }
 
   Stream<List<Alert>> _getFilteredAlertsStream() {
-    // Déterminer le type d'alerte à filtrer
+    // Determine the alert type to filter
     String? alertType;
     String? severity;
     
     if (_selectedFilter != 'all') {
-      // Filtres de sévérité
+      // Severity filters
       if (_selectedFilter == 'critical' || 
           _selectedFilter == 'high' || 
           _selectedFilter == 'medium' || 
           _selectedFilter == 'low') {
         severity = _selectedFilter;
-        print('🔍 DEBUG: Filtre de sévérité appliqué: $severity');
+        print('🔍 DEBUG: Severity filter applied: $severity');
       } else {
-        // Filtres de type d'alerte
+        // Alert type filters
         alertType = _selectedFilter;
-        print('🔍 DEBUG: Filtre de type appliqué: $alertType');
+        print('🔍 DEBUG: Type filter applied: $alertType');
       }
     }
 
-    print('🔍 DEBUG: Paramètres du filtre - Type: $alertType, Sévérité: $severity, Date début: $_startDate, Date fin: $_endDate');
+    print('🔍 DEBUG: Filter parameters - Type: $alertType, Severity: $severity, Start date: $_startDate, End date: $_endDate');
 
     return AlertService.getFilteredAlertsStream(
       startDate: _startDate,
@@ -679,20 +679,20 @@ class _DashboardPageState extends State<DashboardPage> {
   String _buildActiveFiltersText() {
     List<String> activeFilters = [];
     
-    // Ajouter le filtre de type/sévérité s'il n'est pas "all"
+    // Add type/severity filter if not "all"
     if (_selectedFilter != 'all') {
       switch (_selectedFilter) {
         case 'critical':
-          activeFilters.add('Critiques');
+          activeFilters.add('Critical');
           break;
         case 'high':
-          activeFilters.add('Élevées');
+          activeFilters.add('High');
           break;
         case 'medium':
-          activeFilters.add('Moyennes');
+          activeFilters.add('Medium');
           break;
         case 'low':
-          activeFilters.add('Faibles');
+          activeFilters.add('Low');
           break;
         case 'intrusion_detected':
           activeFilters.add('Intrusions');
@@ -708,7 +708,7 @@ class _DashboardPageState extends State<DashboardPage> {
       }
     }
     
-    // Ajouter le filtre de date s'il existe
+    // Add date filter if it exists
     if (_startDate != null || _endDate != null) {
       if (_startDate != null && _endDate != null) {
         final duration = _endDate!.difference(_startDate!);
@@ -720,17 +720,17 @@ class _DashboardPageState extends State<DashboardPage> {
           activeFilters.add('${duration.inMinutes}min');
         }
       } else if (_startDate != null) {
-        activeFilters.add('Depuis ${_formatShortDate(_startDate!)}');
+        activeFilters.add('Since ${_formatShortDate(_startDate!)}');
       } else if (_endDate != null) {
-        activeFilters.add('Jusqu\'à ${_formatShortDate(_endDate!)}');
+        activeFilters.add('Until ${_formatShortDate(_endDate!)}');
       }
     }
     
     if (activeFilters.isEmpty) {
-      return 'Aucun filtre actif';
+      return 'No active filters';
     }
     
-    return 'Filtres actifs: ${activeFilters.join(', ')}';
+    return 'Active filters: ${activeFilters.join(', ')}';
   }
 
 
@@ -884,23 +884,23 @@ class AlertCard extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               _buildDetailRow('Message', alert.rawMessage),
-              _buildDetailRow('Gravité', alert.severity),
-              _buildDetailRow('IP bloquée', alert.ipBlocked),
-              _buildDetailRow('IP publique', alert.publicIp),
-              _buildDetailRow('Localisation', '${alert.city}, ${alert.region}, ${alert.country}'),
-              _buildDetailRow('Coordonnées', alert.formattedLocation),
-              _buildDetailRow('Organisation', alert.organization),
-              _buildDetailRow('Probabilité VPN', '${alert.vpnLikelihood}% (${alert.vpnLikelihoodDescription})'),
-              _buildDetailRow('Appareil', alert.deviceId),
-              _buildDetailRow('Fuseau horaire', alert.timezone),
-              _buildDetailRow('Horodatage', alert.timestamp),
+              _buildDetailRow('Severity', alert.severity),
+              _buildDetailRow('Blocked IP', alert.ipBlocked),
+              _buildDetailRow('Public IP', alert.publicIp),
+              _buildDetailRow('Location', '${alert.city}, ${alert.region}, ${alert.country}'),
+              _buildDetailRow('Coordinates', alert.formattedLocation),
+              _buildDetailRow('Organization', alert.organization),
+              _buildDetailRow('VPN Likelihood', '${alert.vpnLikelihood}% (${alert.vpnLikelihoodDescription})'),
+              _buildDetailRow('Device', alert.deviceId),
+              _buildDetailRow('Timezone', alert.timezone),
+              _buildDetailRow('Timestamp', alert.timestamp),
             ],
           ),
         ),
         actions: [
           TextButton(
             onPressed: () => Navigator.of(context).pop(),
-            child: const Text('Fermer'),
+            child: const Text('Close'),
           ),
         ],
       ),

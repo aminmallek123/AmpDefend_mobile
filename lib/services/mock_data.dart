@@ -9,80 +9,80 @@ class MockData {
     const Feature(
       id: 'smart-honeypot',
       title: 'Smart Honeypot Technology',
-      description: 'Intelligence artificielle avancée pour détecter et analyser les tentatives d\'intrusion en temps réel.',
+      description: 'Advanced artificial intelligence to detect and analyze intrusion attempts in real time.',
       iconPath: 'assets/icons/shield.svg',
       category: 'Security',
       isHighlighted: true,
       benefits: [
-        'Détection proactive des menaces',
-        'Analyse comportementale avancée',
-        'Apprentissage automatique adaptatif',
-        'Faux positifs minimisés'
+        'Proactive threat detection',
+        'Advanced behavioral analysis',
+        'Adaptive machine learning',
+        'Minimized false positives'
       ],
     ),
     const Feature(
       id: 'real-time-alerts',
-      title: 'Alertes Temps Réel',
-      description: 'Notifications instantanées et tableaux de bord pour une réponse rapide aux incidents de sécurité.',
+      title: 'Real-Time Alerts',
+      description: 'Instant notifications and dashboards for quick response to security incidents.',
       iconPath: 'assets/icons/alert.svg',
       category: 'Monitoring',
       benefits: [
-        'Notifications push instantanées',
-        'Tableaux de bord personnalisables',
-        'Intégrations SIEM/SOAR',
-        'Escalade automatique'
+        'Instant push notifications',
+        'Customizable dashboards',
+        'SIEM/SOAR integrations',
+        'Automatic escalation'
       ],
     ),
     const Feature(
       id: 'analytics-dashboard',
       title: 'Analytics & Reporting',
-      description: 'Analyses approfondies et rapports détaillés pour optimiser votre posture de sécurité.',
+      description: 'In-depth analysis and detailed reports to optimize your security posture.',
       iconPath: 'assets/icons/analytics.svg',
       category: 'Analytics',
       benefits: [
-        'Métriques de sécurité avancées',
-        'Rapports automatisés',
-        'Visualisations interactives',
-        'Tendances et prédictions'
+        'Advanced security metrics',
+        'Automated reports',
+        'Interactive visualizations',
+        'Trends and predictions'
       ],
     ),
     const Feature(
       id: 'easy-deployment',
-      title: 'Déploiement Facile',
-      description: 'Installation simple et configuration automatique pour une mise en place rapide.',
+      title: 'Easy Deployment',
+      description: 'Simple installation and automatic configuration for quick setup.',
       iconPath: 'assets/icons/deploy.svg',
       category: 'Deployment',
       benefits: [
-        'Installation en un clic',
-        'Configuration automatique',
-        'Support multi-plateforme',
-        'Documentation complète'
+        'One-click installation',
+        'Automatic configuration',
+        'Multi-platform support',
+        'Complete documentation'
       ],
     ),
     const Feature(
       id: 'threat-intelligence',
       title: 'Threat Intelligence',
-      description: 'Base de données de menaces mise à jour en continu pour une protection optimale.',
+      description: 'Continuously updated threat database for optimal protection.',
       iconPath: 'assets/icons/intelligence.svg',
       category: 'Intelligence',
       benefits: [
-        'IOCs mis à jour en temps réel',
-        'Corrélation de menaces',
-        'Géolocalisation des attaques',
-        'Signatures comportementales'
+        'Real-time updated IOCs',
+        'Threat correlation',
+        'Attack geolocation',
+        'Behavioral signatures'
       ],
     ),
     const Feature(
       id: 'api-integration',
-      title: 'Intégrations API',
-      description: 'APIs robustes pour intégrer AMPDefend avec vos outils de sécurité existants.',
+      title: 'API Integrations',
+      description: 'Robust APIs to integrate AMPDefend with your existing security tools.',
       iconPath: 'assets/icons/api.svg',
       category: 'Integration',
       benefits: [
-        'REST API complète',
-        'Webhooks configurables',
-        'SDKs multi-langages',
-        'Documentation OpenAPI'
+        'Complete REST API',
+        'Configurable webhooks',
+        'Multi-language SDKs',
+        'OpenAPI documentation'
       ],
     ),
   ];
@@ -91,112 +91,112 @@ class MockData {
   static List<BlogPost> get blogPosts => [
     BlogPost(
       id: 'honeypots-future-cybersecurity',
-      title: 'L\'avenir de la cybersécurité : Les honeypots intelligents',
-      excerpt: 'Découvrez comment les honeypots nouvelle génération révolutionnent la détection des menaces.',
+      title: 'The Future of Cybersecurity: Intelligent Honeypots',
+      excerpt: 'Discover how next-generation honeypots are revolutionizing threat detection.',
       content: '''
-Les honeypots ont évolué bien au-delà de leurs origines simples. Dans le paysage actuel des menaces cybernétiques, les honeypots intelligents représentent une révolution dans la détection proactive des intrusions.
+Honeypots have evolved far beyond their simple origins. In today's cyber threat landscape, intelligent honeypots represent a revolution in proactive intrusion detection.
 
-## Qu'est-ce qu'un honeypot intelligent ?
+## What is an intelligent honeypot?
 
-Un honeypot intelligent utilise l'intelligence artificielle et l'apprentissage automatique pour :
-- Simuler des systèmes réalistes
-- Adapter son comportement aux attaquants
-- Analyser les techniques d'intrusion en temps réel
+An intelligent honeypot uses artificial intelligence and machine learning to:
+- Simulate realistic systems
+- Adapt its behavior to attackers
+- Analyze intrusion techniques in real time
 
-## Les avantages clés
+## Key Benefits
 
-1. **Détection précoce** : Identification des menaces avant qu'elles n'atteignent les systèmes critiques
-2. **Analyse comportementale** : Compréhension approfondie des tactiques d'attaque
-3. **Réduction des faux positifs** : Intelligence contextuelle pour filtrer les alertes
+1. **Early Detection**: Identifying threats before they reach critical systems
+2. **Behavioral Analysis**: Deep understanding of attack tactics
+3. **Reduced False Positives**: Contextual intelligence to filter alerts
 
-## Mise en pratique
+## Implementation
 
-L'implémentation d'AMPDefend dans votre infrastructure permet une protection proactive sans impact sur les performances des systèmes de production.
+Implementing AMPDefend in your infrastructure enables proactive protection without impacting production system performance.
       ''',
       author: 'Dr. Marie Dubois',
       publishDate: DateTime(2024, 12, 15),
       imageUrl: 'assets/images/blog_honeypots.jpg',
-      tags: ['Cybersécurité', 'IA', 'Honeypots', 'Innovation'],
+      tags: ['Cybersecurity', 'AI', 'Honeypots', 'Innovation'],
       readTimeMinutes: 8,
       category: 'Security',
     ),
     BlogPost(
       id: 'threat-landscape-2024',
-      title: 'Panorama des menaces 2024 : Nouvelles tendances',
-      excerpt: 'Analyse des dernières tendances en matière de cybermenaces et comment s\'en protéger.',
+      title: 'Threat Landscape 2024: New Trends',
+      excerpt: 'Analysis of the latest cyberthreat trends and how to protect against them.',
       content: '''
-L'année 2024 marque un tournant dans l'évolution des cybermenaces. Les attaquants adoptent des stratégies de plus en plus sophistiquées.
+The year 2024 marks a turning point in the evolution of cyber threats. Attackers are adopting increasingly sophisticated strategies.
 
-## Tendances principales
+## Main Trends
 
-### 1. Attaques alimentées par l'IA
-Les cybercriminels utilisent l'intelligence artificielle pour :
-- Automatiser les reconnaissances
-- Personnaliser les attaques de phishing
-- Contourner les défenses traditionnelles
+### 1. AI-Powered Attacks
+Cybercriminals are using artificial intelligence to:
+- Automate reconnaissance
+- Personalize phishing attacks
+- Bypass traditional defenses
 
 ### 2. Supply Chain Attacks
-Les attaques de la chaîne d'approvisionnement se multiplient, ciblant les fournisseurs pour atteindre les organisations finales.
+Supply chain attacks are multiplying, targeting vendors to reach end organizations.
 
 ### 3. Ransomware as a Service (RaaS)
-La démocratisation des outils de ransomware facilite l'accès aux cybercriminels moins expérimentés.
+The democratization of ransomware tools makes access easier for less experienced cybercriminals.
 
-## Stratégies de défense
+## Defense Strategies
 
-Pour faire face à ces nouvelles menaces, les organisations doivent adopter une approche de sécurité proactive incluant :
-- Surveillance comportementale avancée
-- Intelligence artificielle défensive
-- Analyse des indicateurs de compromission
+To face these new threats, organizations must adopt a proactive security approach including:
+- Advanced behavioral monitoring
+- Defensive artificial intelligence
+- Analysis of compromise indicators
 
-AMPDefend répond à ces défis en offrant une détection précoce et une analyse comportementale en temps réel.
+AMPDefend addresses these challenges by offering early detection and real-time behavioral analysis.
       ''',
       author: 'Jean-Pierre Martin',
       publishDate: DateTime(2024, 12, 10),
       imageUrl: 'assets/images/blog_threats.jpg',
-      tags: ['Menaces', 'Trends', 'Ransomware', 'IA'],
+      tags: ['Threats', 'Trends', 'Ransomware', 'AI'],
       readTimeMinutes: 12,
       category: 'Threat Intelligence',
     ),
     BlogPost(
       id: 'implementing-zero-trust',
-      title: 'Implémentation d\'une architecture Zero Trust',
-      excerpt: 'Guide pratique pour migrer vers une architecture de sécurité Zero Trust.',
+      title: 'Implementing Zero Trust Architecture',
+      excerpt: 'Practical guide to migrating to a Zero Trust security architecture.',
       content: '''
-L'architecture Zero Trust devient la norme pour sécuriser les infrastructures modernes. Voici comment l'implémenter efficacement.
+Zero Trust architecture is becoming the standard for securing modern infrastructures. Here's how to implement it effectively.
 
-## Principes fondamentaux
+## Fundamental Principles
 
 ### "Never Trust, Always Verify"
-- Vérification continue de l'identité
-- Validation de chaque accès
-- Principe du moindre privilège
+- Continuous identity verification
+- Validation of every access
+- Principle of least privilege
 
 ### Micro-segmentation
-- Isolation des ressources critiques
-- Contrôle granulaire des accès
-- Limitation de la propagation latérale
+- Isolation of critical resources
+- Granular access control
+- Limitation of lateral propagation
 
-## Étapes d'implémentation
+## Implementation Steps
 
-1. **Inventaire et classification** des assets
-2. **Mapping des flux** de données
-3. **Définition des politiques** d'accès
-4. **Déploiement progressif** des contrôles
-5. **Monitoring et ajustement** continus
+1. **Inventory and classification** of assets
+2. **Data flow mapping**
+3. **Access policy definition**
+4. **Progressive deployment** of controls
+5. **Continuous monitoring and adjustment**
 
-## Intégration avec AMPDefend
+## Integration with AMPDefend
 
-Les honeypots intelligents d'AMPDefend s'intègrent parfaitement dans une architecture Zero Trust en fournissant :
-- Détection des mouvements latéraux
-- Validation des comportements utilisateur
-- Alertes sur les tentatives d'accès non autorisées
+AMPDefend's intelligent honeypots integrate perfectly into a Zero Trust architecture by providing:
+- Lateral movement detection
+- User behavior validation
+- Alerts on unauthorized access attempts
 
-Cette approche combinée offre une protection robuste contre les menaces internes et externes.
+This combined approach offers robust protection against internal and external threats.
       ''',
       author: 'Sophie Laurent',
       publishDate: DateTime(2024, 12, 5),
       imageUrl: 'assets/images/blog_zerotrust.jpg',
-      tags: ['Zero Trust', 'Architecture', 'Sécurité', 'Best Practices'],
+      tags: ['Zero Trust', 'Architecture', 'Security', 'Best Practices'],
       readTimeMinutes: 15,
       category: 'Architecture',
     ),
@@ -239,7 +239,7 @@ Cette approche combinée offre une protection robuste contre les menaces interne
       name: 'Julie Petit',
       company: 'DataSecure Ltd',
       position: 'Security Analyst',
-      testimonial: 'Les analyses détaillées et les rapports automatisés d\'AMPDefend nous font gagner un temps précieux dans nos investigations.',
+      testimonial: 'AMPDefend\'s detailed analyses and automated reports save us precious time in our investigations.',
       avatarUrl: 'assets/images/avatar_4.jpg',
       rating: 4,
       date: DateTime(2024, 11, 5),
@@ -273,7 +273,7 @@ Cette approche combinée offre une protection robuste contre les menaces interne
       id: 'security-lead',
       name: 'Marc Lefebvre',
       position: 'Lead Security Researcher',
-      bio: 'Chercheur en sécurité informatique, spécialiste des honeypots et de l\'analyse comportementale des malwares.',
+      bio: 'Computer security researcher, specialist in honeypots and behavioral analysis of malware.',
       imageUrl: 'assets/images/team_security.jpg',
       skills: ['Reverse Engineering', 'Malware Analysis', 'Honeypots', 'Threat Hunting'],
       email: 'marc.lefebvre@ampdefend.com',
@@ -293,13 +293,13 @@ Cette approche combinée offre une protection robuste contre les menaces interne
 
   // Company information
   static Map<String, dynamic> get companyInfo => {
-    'mission': 'Protéger les infrastructures critiques avec des solutions de cybersécurité intelligentes et proactives.',
-    'vision': 'Devenir le leader mondial des solutions de honeypots intelligents et révolutionner la détection des menaces.',
+    'mission': 'Protect critical infrastructures with intelligent and proactive cybersecurity solutions.',
+    'vision': 'Become the global leader in intelligent honeypot solutions and revolutionize threat detection.',
     'values': [
-      'Innovation continue',
-      'Excellence technique',
-      'Sécurité par design',
-      'Transparence',
+      'Continuous innovation',
+      'Technical excellence',
+      'Security by design',
+      'Transparency',
       'Collaboration'
     ],
     'founded': 2020,

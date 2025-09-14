@@ -2,7 +2,7 @@ import '../models/alert.dart';
 import '../models/alert_statistics.dart';
 
 class TestAlertService {
-  // Données de test pour les filtres
+  // Test data for filters
   static List<Alert> _mockAlerts = [
     Alert(
       alertType: 'intrusion_detected',
@@ -91,11 +91,11 @@ class TestAlertService {
     ),
   ];
 
-  // Obtenir toutes les alertes de test
+  // Get all test alerts
   static Stream<List<Alert>> getAlertsStream() {
-    print('🔍 DEBUG TEST: Retour de ${_mockAlerts.length} alertes de test');
+    print('🔍 DEBUG TEST: Returning ${_mockAlerts.length} test alerts');
     
-    // Debug: afficher les types et sévérités disponibles
+    // Debug: display available types and severities
     final types = _mockAlerts.map((a) => a.alertType).toSet().toList();
     final severities = _mockAlerts.map((a) => a.severity).toSet().toList();
     print('🔍 DEBUG TEST: Types d\'alertes disponibles: $types');
@@ -164,7 +164,7 @@ class TestAlertService {
     });
   }
 
-  // Obtenir les statistiques des alertes
+  // Get alert statistics
   static Stream<AlertStatistics> getAlertStatistics() {
     return getAlertsStream().map((alerts) {
       int total = alerts.length;
@@ -173,7 +173,7 @@ class TestAlertService {
       int medium = alerts.where((a) => a.severity.toLowerCase() == 'medium').length;
       int low = alerts.where((a) => a.severity.toLowerCase() == 'low').length;
 
-      // Alertes récentes (dernières 24h)
+      // Recent alerts (last 24h)
       final oneDayAgo = DateTime.now().subtract(Duration(days: 1));
       int recent = alerts.where((alert) {
         final alertDate = alert.parsedTimestamp;

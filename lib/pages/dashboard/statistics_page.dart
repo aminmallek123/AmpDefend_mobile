@@ -36,13 +36,13 @@ class _StatisticsPageState extends State<StatisticsPage> with TickerProviderStat
       length: 4,
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('Statistiques Sécurité'),
+          title: const Text('Security Statistics'),
           leading: IconButton(
             icon: const Icon(Icons.arrow_back),
             onPressed: () {
               context.go('/dashboard');
             },
-            tooltip: 'Retour au Dashboard',
+            tooltip: 'Back to Dashboard',
           ),
           actions: [
             PopupMenuButton<String>(
@@ -56,10 +56,10 @@ class _StatisticsPageState extends State<StatisticsPage> with TickerProviderStat
                 }
               },
               itemBuilder: (context) => [
-                const PopupMenuItem(value: '1d', child: Text('Dernières 24h')),
-                const PopupMenuItem(value: '7d', child: Text('7 derniers jours')),
-                const PopupMenuItem(value: '30d', child: Text('30 derniers jours')),
-                const PopupMenuItem(value: 'all', child: Text('Toutes les données')),
+                const PopupMenuItem(value: '1d', child: Text('Last 24h')),
+                const PopupMenuItem(value: '7d', child: Text('Last 7 days')),
+                const PopupMenuItem(value: '30d', child: Text('Last 30 days')),
+                const PopupMenuItem(value: 'all', child: Text('All data')),
                 const PopupMenuItem(
                   value: 'logout',
                   child: ListTile(
@@ -83,10 +83,10 @@ class _StatisticsPageState extends State<StatisticsPage> with TickerProviderStat
           bottom: TabBar(
             controller: _tabController,
             tabs: const [
-              Tab(icon: Icon(Icons.analytics), text: 'Vue d\'ensemble'),
-              Tab(icon: Icon(Icons.pie_chart), text: 'Répartition'),
-              Tab(icon: Icon(Icons.timeline), text: 'Tendances'),
-              Tab(icon: Icon(Icons.map), text: 'Géographie'),
+              Tab(icon: Icon(Icons.analytics), text: 'Overview'),
+              Tab(icon: Icon(Icons.pie_chart), text: 'Distribution'),
+              Tab(icon: Icon(Icons.timeline), text: 'Trends'),
+              Tab(icon: Icon(Icons.map), text: 'Geography'),
             ],
           ),
         ),
@@ -137,17 +137,17 @@ class _StatisticsPageState extends State<StatisticsPage> with TickerProviderStat
     return StreamBuilder<AlertStatistics>(
       stream: AlertService.getAlertStatistics(),
       builder: (context, snapshot) {
-        print('🔍 DEBUG UI: État du snapshot: ${snapshot.connectionState}');
-        print('🔍 DEBUG UI: A des données: ${snapshot.hasData}');
-        print('🔍 DEBUG UI: A une erreur: ${snapshot.hasError}');
+        print('🔍 DEBUG UI: Snapshot state: ${snapshot.connectionState}');
+        print('🔍 DEBUG UI: Has data: ${snapshot.hasData}');
+        print('🔍 DEBUG UI: Has error: ${snapshot.hasError}');
         if (snapshot.hasError) {
-          print('🔍 DEBUG UI: Erreur: ${snapshot.error}');
+          print('🔍 DEBUG UI: Error: ${snapshot.error}');
         }
         if (snapshot.hasData) {
-          print('🔍 DEBUG UI: Total alertes reçues: ${snapshot.data!.total}');
+          print('🔍 DEBUG UI: Total alerts received: ${snapshot.data!.total}');
         }
 
-        // Afficher directement les données si disponibles, même en cours de chargement
+        // Display data directly if available, even while loading
         if (snapshot.hasData) {
           final stats = snapshot.data!;
           return _buildStatsContent(stats);
@@ -167,7 +167,7 @@ class _StatisticsPageState extends State<StatisticsPage> with TickerProviderStat
                   ),
                   const SizedBox(height: 16),
                   Text(
-                    'Erreur de chargement',
+                    'Loading error',
                     style: Theme.of(context).textTheme.titleLarge,
                   ),
                   const SizedBox(height: 8),
@@ -189,7 +189,7 @@ class _StatisticsPageState extends State<StatisticsPage> with TickerProviderStat
           );
         }
 
-        // Gestion de l'absence de données
+        // Handle absence of data
         final stats = snapshot.data;
         if (stats == null || stats.total == 0) {
           return Center(
@@ -205,12 +205,12 @@ class _StatisticsPageState extends State<StatisticsPage> with TickerProviderStat
                   ),
                   const SizedBox(height: 16),
                   Text(
-                    'Aucune donnée disponible',
+                    'No data available',
                     style: Theme.of(context).textTheme.titleLarge,
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    'Les statistiques apparaîtront une fois que des alertes seront reçues',
+                    'Statistics will appear once alerts are received',
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                       color: Colors.grey[600],
                     ),
@@ -228,7 +228,7 @@ class _StatisticsPageState extends State<StatisticsPage> with TickerProviderStat
           );
         }
 
-        // Afficher les statistiques
+        // Display statistics
         return _buildStatsContent(stats);
       },
     );
@@ -244,14 +244,14 @@ class _StatisticsPageState extends State<StatisticsPage> with TickerProviderStat
       childAspectRatio: 1.3, // Légèrement plus d'espace vertical
       children: [
         _buildMetricCard(
-          'Total Alertes',
+          'Total Alerts',
           '${stats.total}',
           Icons.notifications,
           Colors.blue,
-          subtitle: 'Toutes périodes',
+          subtitle: 'All periods',
         ),
         _buildMetricCard(
-          'Dernières 24h',
+          'Last 24h',
           '${stats.last24Hours}',
           Icons.access_time,
           Colors.orange,
@@ -334,7 +334,7 @@ class _StatisticsPageState extends State<StatisticsPage> with TickerProviderStat
       return const Card(
         child: Padding(
           padding: EdgeInsets.all(16),
-          child: Text('Aucune donnée pour le graphique'),
+          child: Text('No data for chart'),
         ),
       );
     }
@@ -346,7 +346,7 @@ class _StatisticsPageState extends State<StatisticsPage> with TickerProviderStat
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Répartition par Gravité',
+              'Distribution by Severity',
               style: Theme.of(context).textTheme.titleLarge?.copyWith(
                 fontWeight: FontWeight.bold,
               ),
@@ -456,7 +456,7 @@ class _StatisticsPageState extends State<StatisticsPage> with TickerProviderStat
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Activité Récente',
+              'Recent Activity',
               style: Theme.of(context).textTheme.titleLarge?.copyWith(
                 fontWeight: FontWeight.bold,
               ),
@@ -473,7 +473,7 @@ class _StatisticsPageState extends State<StatisticsPage> with TickerProviderStat
                 final recentAlerts = alerts.take(5).toList();
 
                 if (recentAlerts.isEmpty) {
-                  return const Text('Aucune activité récente');
+                  return const Text('No recent activity');
                 }
 
                 return Column(
@@ -508,7 +508,7 @@ class _StatisticsPageState extends State<StatisticsPage> with TickerProviderStat
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Top Menaces',
+              'Top Threats',
               style: Theme.of(context).textTheme.titleLarge?.copyWith(
                 fontWeight: FontWeight.bold,
               ),
@@ -558,7 +558,7 @@ class _StatisticsPageState extends State<StatisticsPage> with TickerProviderStat
                 children: [
                   Icon(Icons.error_outline, size: 64, color: Colors.red[300]),
                   const SizedBox(height: 16),
-                  Text('Erreur de chargement', style: Theme.of(context).textTheme.titleLarge),
+                  Text('Loading error', style: Theme.of(context).textTheme.titleLarge),
                   const SizedBox(height: 8),
                   Text('${snapshot.error}', textAlign: TextAlign.center),
                 ],
@@ -577,9 +577,9 @@ class _StatisticsPageState extends State<StatisticsPage> with TickerProviderStat
                 children: [
                   Icon(Icons.pie_chart, size: 64, color: Colors.grey[400]),
                   const SizedBox(height: 16),
-                  Text('Aucune donnée à analyser', style: Theme.of(context).textTheme.titleLarge),
+                  Text('No data to analyze', style: Theme.of(context).textTheme.titleLarge),
                   const SizedBox(height: 8),
-                  Text('Les graphiques de distribution apparaîtront avec plus de données'),
+                  Text('Distribution charts will appear with more data'),
                 ],
               ),
             ),
@@ -608,7 +608,7 @@ class _StatisticsPageState extends State<StatisticsPage> with TickerProviderStat
           child: Column(
             children: [
               Text(
-                'Répartition par Pays',
+                'Distribution by Country',
                 style: Theme.of(context).textTheme.titleLarge?.copyWith(
                   fontWeight: FontWeight.bold,
                 ),
@@ -616,7 +616,7 @@ class _StatisticsPageState extends State<StatisticsPage> with TickerProviderStat
               const SizedBox(height: 16),
               Center(
                 child: Text(
-                  'Aucune donnée géographique disponible',
+                  'No geographic data available',
                   style: TextStyle(color: Colors.grey[600]),
                 ),
               ),
@@ -633,7 +633,7 @@ class _StatisticsPageState extends State<StatisticsPage> with TickerProviderStat
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Répartition par Pays',
+              'Distribution by Country',
               style: Theme.of(context).textTheme.titleLarge?.copyWith(
                 fontWeight: FontWeight.bold,
               ),
@@ -679,7 +679,7 @@ class _StatisticsPageState extends State<StatisticsPage> with TickerProviderStat
           child: Column(
             children: [
               Text(
-                'Types d\'Alertes',
+                'Alert Types',
                 style: Theme.of(context).textTheme.titleLarge?.copyWith(
                   fontWeight: FontWeight.bold,
                 ),
@@ -687,7 +687,7 @@ class _StatisticsPageState extends State<StatisticsPage> with TickerProviderStat
               const SizedBox(height: 16),
               Center(
                 child: Text(
-                  'Aucun type d\'alerte à afficher',
+                  'No alert types to display',
                   style: TextStyle(color: Colors.grey[600]),
                 ),
               ),
@@ -704,7 +704,7 @@ class _StatisticsPageState extends State<StatisticsPage> with TickerProviderStat
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Types d\'Alertes',
+              'Alert Types',
               style: Theme.of(context).textTheme.titleLarge?.copyWith(
                 fontWeight: FontWeight.bold,
               ),
@@ -800,7 +800,7 @@ class _StatisticsPageState extends State<StatisticsPage> with TickerProviderStat
   }
 
   Widget _buildTimelineChart(List<Alert> alerts) {
-    // Grouper les alertes par jour
+    // Group alerts by day
     Map<String, int> dailyAlerts = {};
     final now = DateTime.now();
     
@@ -825,7 +825,7 @@ class _StatisticsPageState extends State<StatisticsPage> with TickerProviderStat
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Tendance (7 derniers jours)',
+              'Trends (Last 7 days)',
               style: Theme.of(context).textTheme.titleLarge?.copyWith(
                 fontWeight: FontWeight.bold,
               ),
@@ -888,7 +888,7 @@ class _StatisticsPageState extends State<StatisticsPage> with TickerProviderStat
   }
 
   Widget _buildHourlyDistribution(List<Alert> alerts) {
-    // Grouper les alertes par heure
+    // Group alerts by hour
     Map<int, int> hourlyAlerts = {};
     for (int i = 0; i < 24; i++) {
       hourlyAlerts[i] = 0;
@@ -908,7 +908,7 @@ class _StatisticsPageState extends State<StatisticsPage> with TickerProviderStat
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Distribution par Heure',
+              'Hourly Distribution',
               style: Theme.of(context).textTheme.titleLarge?.copyWith(
                 fontWeight: FontWeight.bold,
               ),
@@ -975,7 +975,7 @@ class _StatisticsPageState extends State<StatisticsPage> with TickerProviderStat
 
         final stats = snapshot.data;
         if (stats == null) {
-          return const Center(child: Text('Aucune donnée disponible'));
+          return const Center(child: Text('No data available'));
         }
 
         return SingleChildScrollView(
@@ -1000,7 +1000,7 @@ class _StatisticsPageState extends State<StatisticsPage> with TickerProviderStat
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Carte Mondiale des Menaces',
+              'Global Threat Map',
               style: Theme.of(context).textTheme.titleLarge?.copyWith(
                 fontWeight: FontWeight.bold,
               ),
@@ -1019,8 +1019,8 @@ class _StatisticsPageState extends State<StatisticsPage> with TickerProviderStat
                   children: [
                     Icon(Icons.map, size: 48, color: Colors.grey),
                     SizedBox(height: 8),
-                    Text('Carte mondiale interactive'),
-                    Text('(À implémenter avec une lib de cartes)'),
+                    Text('Interactive world map'),
+                    Text('(To be implemented with map library)'),
                   ],
                 ),
               ),
@@ -1039,7 +1039,7 @@ class _StatisticsPageState extends State<StatisticsPage> with TickerProviderStat
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Statistiques par Pays',
+              'Statistics by Country',
               style: Theme.of(context).textTheme.titleLarge?.copyWith(
                 fontWeight: FontWeight.bold,
               ),

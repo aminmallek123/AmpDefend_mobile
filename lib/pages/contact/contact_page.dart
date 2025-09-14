@@ -83,7 +83,7 @@ class _ContactPageState extends State<ContactPage> {
           const SizedBox(height: 8),
           
           Text(
-            'Prêt à sécuriser votre infrastructure ? Discutons de vos besoins.',
+            'Ready to secure your infrastructure? Let\'s discuss your needs.',
             style: Theme.of(context).textTheme.bodyLarge?.copyWith(
               color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
               height: 1.5,
@@ -104,7 +104,7 @@ class _ContactPageState extends State<ContactPage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Envoyez-nous un message',
+              'Send us a message',
               style: Theme.of(context).textTheme.titleLarge?.copyWith(
                 fontWeight: FontWeight.bold,
               ),
@@ -114,7 +114,7 @@ class _ContactPageState extends State<ContactPage> {
             
             // Contact type selection
             Text(
-              'Type de demande',
+              'Request type',
               style: Theme.of(context).textTheme.titleMedium?.copyWith(
                 fontWeight: FontWeight.w600,
               ),
@@ -155,8 +155,8 @@ class _ContactPageState extends State<ContactPage> {
             TextFormField(
               controller: _nameController,
               decoration: InputDecoration(
-                labelText: 'Nom complet *',
-                hintText: 'Votre nom et prénom',
+                labelText: 'Full Name *',
+                hintText: 'Your first and last name',
                 prefixIcon: const Icon(Icons.person),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(12),
@@ -166,10 +166,10 @@ class _ContactPageState extends State<ContactPage> {
               ),
               validator: (value) {
                 if (value == null || value.trim().isEmpty) {
-                  return 'Veuillez entrer votre nom';
+                  return 'Please enter your name';
                 }
                 if (value.trim().length < 2) {
-                  return 'Le nom doit contenir au moins 2 caractères';
+                  return 'Name must contain at least 2 characters';
                 }
                 return null;
               },
@@ -183,7 +183,7 @@ class _ContactPageState extends State<ContactPage> {
               keyboardType: TextInputType.emailAddress,
               decoration: InputDecoration(
                 labelText: 'Email *',
-                hintText: 'votre.email@exemple.com',
+                hintText: 'your.email@example.com',
                 prefixIcon: const Icon(Icons.email),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(12),
@@ -193,10 +193,10 @@ class _ContactPageState extends State<ContactPage> {
               ),
               validator: (value) {
                 if (value == null || value.trim().isEmpty) {
-                  return 'Veuillez entrer votre email';
+                  return 'Please enter your email';
                 }
                 if (!RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(value)) {
-                  return 'Veuillez entrer un email valide';
+                  return 'Please enter a valid email';
                 }
                 return null;
               },
@@ -208,8 +208,8 @@ class _ContactPageState extends State<ContactPage> {
             TextFormField(
               controller: _companyController,
               decoration: InputDecoration(
-                labelText: 'Entreprise *',
-                hintText: 'Nom de votre entreprise',
+                labelText: 'Company *',
+                hintText: 'Your company name',
                 prefixIcon: const Icon(Icons.business),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(12),
@@ -219,7 +219,7 @@ class _ContactPageState extends State<ContactPage> {
               ),
               validator: (value) {
                 if (value == null || value.trim().isEmpty) {
-                  return 'Veuillez entrer le nom de votre entreprise';
+                  return 'Please enter your company name';
                 }
                 return null;
               },
@@ -233,7 +233,7 @@ class _ContactPageState extends State<ContactPage> {
               maxLines: 5,
               decoration: InputDecoration(
                 labelText: 'Message *',
-                hintText: 'Décrivez vos besoins, vos questions ou demandes spécifiques...',
+                hintText: 'Describe your needs, questions, or specific requests...',
                 prefixIcon: const Padding(
                   padding: EdgeInsets.only(bottom: 80),
                   child: Icon(Icons.message),
@@ -247,10 +247,10 @@ class _ContactPageState extends State<ContactPage> {
               ),
               validator: (value) {
                 if (value == null || value.trim().isEmpty) {
-                  return 'Veuillez entrer votre message';
+                  return 'Please enter your message';
                 }
                 if (value.trim().length < 10) {
-                  return 'Le message doit contenir au moins 10 caractères';
+                  return 'Message must contain at least 10 characters';
                 }
                 return null;
               },
@@ -294,7 +294,7 @@ class _ContactPageState extends State<ContactPage> {
       child: Column(
         children: [
           Text(
-            'Autres moyens de nous contacter',
+            'Other ways to contact us',
             style: Theme.of(context).textTheme.titleLarge?.copyWith(
               fontWeight: FontWeight.bold,
             ),
@@ -463,11 +463,11 @@ class _ContactPageState extends State<ContactPage> {
   String _getContactTypeLabel(ContactType type) {
     switch (type) {
       case ContactType.demo:
-        return 'Demande de démo';
+        return 'Demo request';
       case ContactType.general:
-        return 'Question générale';
+        return 'General question';
       case ContactType.support:
-        return 'Support technique';
+        return 'Technical support';
       case ContactType.partnership:
         return 'Partenariat';
     }
@@ -476,13 +476,13 @@ class _ContactPageState extends State<ContactPage> {
   String _getSubmitButtonText() {
     switch (_selectedType) {
       case ContactType.demo:
-        return 'Demander une démo';
+        return 'Request demo';
       case ContactType.general:
-        return 'Envoyer le message';
+        return 'Send Message';
       case ContactType.support:
-        return 'Contacter le support';
+        return 'Contact support';
       case ContactType.partnership:
-        return 'Proposer un partenariat';
+        return 'Propose partnership';
     }
   }
 
@@ -540,8 +540,8 @@ class _ContactPageState extends State<ContactPage> {
           title: const Text('Message envoyé !'),
           content: Text(
             _selectedType == ContactType.demo
-                ? 'Merci pour votre demande de démo. Notre équipe vous contactera dans les 24 heures pour planifier une présentation personnalisée.'
-                : 'Merci pour votre message. Notre équipe vous répondra dans les plus brefs délais.',
+                ? 'Thank you for your demo request. Our team will contact you within 24 hours to schedule a personalized presentation.'
+                : 'Thank you for your message. Our team will respond as soon as possible.',
           ),
           actions: [
             TextButton(

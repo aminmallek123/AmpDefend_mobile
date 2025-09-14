@@ -134,7 +134,7 @@ class _SplashPageState extends State<SplashPage> {
                   Column(
                     children: [
                       Text(
-                        'Protégez votre infrastructure avec une intelligence de sécurité de nouvelle génération',
+                        'Protect your infrastructure with next-generation security intelligence',
                         textAlign: TextAlign.center,
                         style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                           color: Colors.white.withOpacity(0.9),

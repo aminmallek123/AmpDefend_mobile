@@ -24,7 +24,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             onPressed: () {
               context.go('/');
             },
-            tooltip: 'Retour à l\'accueil',
+            tooltip: 'Back to home',
           )
         : null,
       title: Row(

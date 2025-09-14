@@ -16,7 +16,7 @@ import '../models/blog_post.dart';
 
 class AppRouter {
   static final GoRouter router = GoRouter(
-    initialLocation: '/', // Commencer par la page d'accueil
+    initialLocation: '/', // Start with the home page
     debugLogDiagnostics: true,
     routes: [
       // Auth Wrapper
@@ -130,12 +130,12 @@ class AppRouter {
             ),
             const SizedBox(height: 16),
             const Text(
-              'Page non trouvée',
+              'Page not found',
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 8),
             Text(
-              'La page "${state.uri.toString()}" n\'existe pas.',
+              'The page "${state.uri.toString()}" does not exist.',
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 24),

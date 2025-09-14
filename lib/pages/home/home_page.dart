@@ -63,7 +63,7 @@ class _HomePageState extends State<HomePage> {
                       onPressed: () {
                         ThemeManager().toggleTheme();
                       },
-                      tooltip: 'Changer le thème',
+                      tooltip: 'Change theme',
                     ),
                     IconButton(
                       icon: const Icon(Icons.dashboard),
@@ -88,7 +88,7 @@ class _HomePageState extends State<HomePage> {
                       onPressed: () {
                         ThemeManager().toggleTheme();
                       },
-                      tooltip: 'Changer le thème',
+                      tooltip: 'Change theme',
                     ),
                     IconButton(
                       icon: const Icon(Icons.login),
@@ -174,7 +174,7 @@ class _HomePageState extends State<HomePage> {
                 const SizedBox(height: 24),
                 
                 Text(
-                  'Protégez votre infrastructure avec des solutions de cybersécurité intelligentes et proactives. Notre technologie de honeypots avancée détecte les menaces en temps réel.',
+                  'Protect your infrastructure with intelligent and proactive cybersecurity solutions. Our advanced honeypot technology detects threats in real time.',
                   style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                     color: Theme.of(context).colorScheme.onPrimary.withOpacity(0.9),
                     height: 1.6,
@@ -197,7 +197,7 @@ class _HomePageState extends State<HomePage> {
                       children: [
                         if (isSignedIn) ...[
                           CustomButton(
-                            text: 'Accéder au Dashboard',
+                            text: 'Access Dashboard',
                             onPressed: () {
                               context.go('/dashboard');
                             },
@@ -206,7 +206,7 @@ class _HomePageState extends State<HomePage> {
                             height: 56,
                           ),
                           CustomButton(
-                            text: 'Voir Statistiques',
+                            text: 'View Statistics',
                             onPressed: () {
                               context.go('/statistics');
                             },
@@ -217,7 +217,7 @@ class _HomePageState extends State<HomePage> {
                           ),
                         ] else ...[
                           CustomButton(
-                            text: 'Se Connecter',
+                            text: 'Sign In',
                             onPressed: () {
                               context.go('/login');
                             },
@@ -226,7 +226,7 @@ class _HomePageState extends State<HomePage> {
                             height: 56,
                           ),
                           CustomButton(
-                            text: 'En Savoir Plus',
+                            text: 'Learn More',
                             onPressed: () {
                               context.go('/features');
                             },
@@ -248,7 +248,7 @@ class _HomePageState extends State<HomePage> {
             Column(
               children: [
                 Text(
-                  'Découvrir',
+                  'Discover',
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
                     color: Theme.of(context).colorScheme.onPrimary.withOpacity(0.7),
                   ),
@@ -272,7 +272,7 @@ class _HomePageState extends State<HomePage> {
       child: Column(
         children: [
           Text(
-            'Fonctionnalités Principales',
+            'Main Features',
             style: Theme.of(context).textTheme.headlineMedium?.copyWith(
               fontWeight: FontWeight.bold,
             ),
@@ -282,7 +282,7 @@ class _HomePageState extends State<HomePage> {
           const SizedBox(height: 16),
           
           Text(
-            'Découvrez les technologies qui font d\'AMPDefend la solution de sécurité la plus avancée du marché.',
+            'Discover the technologies that make AMPDefend the most advanced security solution on the market.',
             style: Theme.of(context).textTheme.bodyLarge?.copyWith(
               color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
               height: 1.5,
@@ -315,7 +315,7 @@ class _HomePageState extends State<HomePage> {
           const SizedBox(height: 24),
           
           CustomButton(
-            text: 'Voir Toutes les Fonctionnalités',
+            text: 'View All Features',
             onPressed: () {
               context.go('/features');
             },
@@ -329,6 +329,11 @@ class _HomePageState extends State<HomePage> {
   Widget _buildStatsSection(BuildContext context) {
     final stats = MockData.statistics;
     
+    // Ensure stats is not null and has values
+    if (stats.isEmpty) {
+      return const SizedBox.shrink();
+    }
+    
     return Container(
       padding: const EdgeInsets.all(24),
       decoration: BoxDecoration(
@@ -337,7 +342,7 @@ class _HomePageState extends State<HomePage> {
       child: Column(
         children: [
           Text(
-            'Chiffres Clés',
+            'Key Figures',
             style: Theme.of(context).textTheme.headlineMedium?.copyWith(
               fontWeight: FontWeight.bold,
             ),
@@ -354,10 +359,10 @@ class _HomePageState extends State<HomePage> {
             mainAxisSpacing: 16,
             crossAxisSpacing: 16,
             children: [
-              _buildStatCard(context, stats['threatsDetected']!.toString(), 'Menaces Détectées'),
-              _buildStatCard(context, stats['clientsProtected']! as String, 'Clients Protégés'),
-              _buildStatCard(context, stats['uptimePercentage']!.toString(), 'Disponibilité'),
-              _buildStatCard(context, stats['averageResponseTime']!.toString(), 'Temps de Réponse'),
+              _buildStatCard(context, stats['threatsDetected']?.toString() ?? '0', 'Threats Detected'),
+              _buildStatCard(context, stats['clientsProtected'] as String? ?? '0', 'Protected Clients'),
+              _buildStatCard(context, stats['uptimePercentage'] as String? ?? '0%', 'Uptime'),
+              _buildStatCard(context, stats['averageResponseTime']?.toString() ?? '0s', 'Response Time'),
             ],
           ),
         ],
@@ -398,7 +403,7 @@ class _HomePageState extends State<HomePage> {
       child: Column(
         children: [
           Text(
-            'Ce que disent nos clients',
+            'What our clients say',
             style: Theme.of(context).textTheme.headlineMedium?.copyWith(
               fontWeight: FontWeight.bold,
             ),
@@ -443,7 +448,7 @@ class _HomePageState extends State<HomePage> {
       child: Column(
         children: [
           Text(
-            'Ils nous font confiance',
+            'They trust us',
             style: Theme.of(context).textTheme.titleLarge?.copyWith(
               fontWeight: FontWeight.w600,
             ),
@@ -463,7 +468,7 @@ class _HomePageState extends State<HomePage> {
                 height: 60,
                 padding: const EdgeInsets.all(8),
                 decoration: BoxDecoration(
-                  // Arrière-plan sombre pour que les logos blancs soient toujours visibles
+                  // Dark background so white logos are always visible
                   gradient: LinearGradient(
                     colors: [
                       Colors.grey.shade800,
@@ -526,7 +531,7 @@ class _HomePageState extends State<HomePage> {
       child: Column(
         children: [
           Text(
-            'Prêt à sécuriser votre infrastructure ?',
+            'Ready to secure your infrastructure?',
             style: Theme.of(context).textTheme.headlineMedium?.copyWith(
               color: Theme.of(context).colorScheme.onPrimary,
               fontWeight: FontWeight.bold,
@@ -537,7 +542,7 @@ class _HomePageState extends State<HomePage> {
           const SizedBox(height: 16),
           
           Text(
-            'Commencez votre essai gratuit dès aujourd\'hui et découvrez la puissance d\'AMPDefend.',
+            'Start your free trial today and discover the power of AMPDefend.',
             style: Theme.of(context).textTheme.bodyLarge?.copyWith(
               color: Theme.of(context).colorScheme.onPrimary.withOpacity(0.9),
               height: 1.5,
@@ -548,7 +553,7 @@ class _HomePageState extends State<HomePage> {
           const SizedBox(height: 32),
           
           CustomButton(
-            text: 'Démarrer l\'essai gratuit',
+            text: 'Start Free Trial',
             onPressed: () {
               context.go('/contact');
             },
@@ -597,7 +602,7 @@ class _HomePageState extends State<HomePage> {
           const SizedBox(height: 16),
           
           Text(
-            '© 2024 AMPDefend. Tous droits réservés.',
+            '© 2025 AMPDefend. All rights reserved.',
             style: Theme.of(context).textTheme.bodySmall?.copyWith(
               color: Theme.of(context).colorScheme.onSurface.withOpacity(0.6),
             ),
@@ -668,7 +673,7 @@ class _HomePageState extends State<HomePage> {
           
           ListTile(
             leading: const Icon(Icons.security),
-            title: const Text('Dashboard Sécurité'),
+            title: const Text('Security Dashboard'),
             onTap: () {
               Navigator.pop(context);
               Navigator.pushNamed(context, '/dashboard');
@@ -677,7 +682,7 @@ class _HomePageState extends State<HomePage> {
           
           ListTile(
             leading: const Icon(Icons.dashboard),
-            title: const Text('Fonctionnalités'),
+            title: const Text('Features'),
             onTap: () {
               Navigator.pop(context);
               Navigator.pushNamed(context, '/features');
@@ -695,7 +700,7 @@ class _HomePageState extends State<HomePage> {
           
           ListTile(
             leading: const Icon(Icons.info),
-            title: const Text('À propos'),
+            title: const Text('About'),
             onTap: () {
               Navigator.pop(context);
               Navigator.pushNamed(context, '/about');

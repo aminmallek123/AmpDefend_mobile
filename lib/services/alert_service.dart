@@ -50,8 +50,8 @@ class AlertService {
           medium: 0,
           low: 0,
           last24Hours: 0,
-          topCountries: <String, int>{'Aucune donnee': 0},
-          topAlertTypes: <String, int>{'Aucune donnee': 0},
+          topCountries: <String, int>{'No data': 0},
+          topAlertTypes: <String, int>{'No data': 0},
         );
       }
       
@@ -85,8 +85,8 @@ class AlertService {
         medium: medium,
         low: low,
         last24Hours: recentAlerts,
-        topCountries: countriesCount.isNotEmpty ? countriesCount : <String, int>{'Aucune donnee': 0},
-        topAlertTypes: alertTypesCount.isNotEmpty ? alertTypesCount : <String, int>{'Aucune donnee': 0},
+        topCountries: countriesCount.isNotEmpty ? countriesCount : <String, int>{'No data': 0},
+        topAlertTypes: alertTypesCount.isNotEmpty ? alertTypesCount : <String, int>{'No data': 0},
       );
     });
   }
@@ -152,7 +152,7 @@ class AlertService {
           'loc': '45.7640,4.8357',
           'org': 'Test VPN',
           'public_ip': '203.0.113.2',
-          'raw_message': 'Analyse VPN depuis Lyon',
+          'raw_message': 'VPN analysis from Lyon',
           'region': 'Auvergne-Rhone-Alpes',
           'severity': 'medium',
           'timestamp': now.millisecondsSinceEpoch.toString(),

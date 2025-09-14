@@ -32,16 +32,16 @@ class _FirebaseTestPageState extends State<FirebaseTestPage> {
       
       // Test 1: Connexion basique
       final ref = _database.ref();
-      _addLog('✅ Référence Firebase créée');
+      _addLog('✅ Firebase reference created');
       
-      // Test 2: Lire les données de la racine
-      _addLog('🔍 Lecture des données racine...');
+      // Test 2: Read root data
+      _addLog('🔍 Reading root data...');
       final rootSnapshot = await ref.get();
-      _addLog('📊 Données racine: ${rootSnapshot.exists ? 'Trouvées' : 'Vides'}');
+      _addLog('📊 Root data: ${rootSnapshot.exists ? 'Found' : 'Empty'}');
       
       if (rootSnapshot.exists) {
         final data = rootSnapshot.value as Map<dynamic, dynamic>;
-        _addLog('📁 Clés trouvées: ${data.keys.toList()}');
+        _addLog('📁 Keys found: ${data.keys.toList()}');
       }
       
       // Test 3: Vérifier le nœud 'alerts'
@@ -52,16 +52,16 @@ class _FirebaseTestPageState extends State<FirebaseTestPage> {
       
       if (alertsSnapshot.exists) {
         final alertsData = alertsSnapshot.value as Map<dynamic, dynamic>;
-        _addLog('📊 Nombre d\'alertes: ${alertsData.length}');
+        _addLog('📊 Number of alerts: ${alertsData.length}');
         
-        // Afficher quelques clés d'exemple
+        // Display some example keys
         final keys = alertsData.keys.take(3).toList();
-        _addLog('🔑 Premiers IDs: $keys');
+        _addLog('🔑 First IDs: $keys');
         
-        // Analyser une alerte exemple
+        // Analyze an example alert
         if (keys.isNotEmpty) {
           final firstAlert = alertsData[keys.first] as Map<dynamic, dynamic>;
-          _addLog('📋 Champs de la première alerte: ${firstAlert.keys.toList()}');
+          _addLog('📋 Fields of first alert: ${firstAlert.keys.toList()}');
           
           if (firstAlert.containsKey('alert_type')) {
             _addLog('🎯 Type: ${firstAlert['alert_type']}');
@@ -77,14 +77,14 @@ class _FirebaseTestPageState extends State<FirebaseTestPage> {
       alertsRef.limitToLast(5).onValue.listen((event) {
         if (event.snapshot.exists) {
           final data = event.snapshot.value as Map<dynamic, dynamic>;
-          _addLog('📡 Stream reçu: ${data.length} alertes');
+          _addLog('📡 Stream received: ${data.length} alerts');
         } else {
-          _addLog('📡 Stream reçu: aucune donnée');
+          _addLog('📡 Stream received: no data');
         }
       });
       
       setState(() {
-        _status = 'Tests terminés!';
+        _status = 'Tests completed!';
       });
       
     } catch (e) {

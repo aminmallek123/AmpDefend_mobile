@@ -81,7 +81,7 @@ class _FeaturesPageState extends State<FeaturesPage> {
           const SizedBox(height: 8),
           
           Text(
-            'Découvrez toutes les capacités d\'AMPDefend pour protéger votre infrastructure',
+            'Discover all AMPDefend capabilities to protect your infrastructure',
             style: Theme.of(context).textTheme.bodyLarge?.copyWith(
               color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
               height: 1.5,
@@ -303,7 +303,7 @@ class _FeaturesPageState extends State<FeaturesPage> {
                         context.go('/contact');
                       },
                       icon: const Icon(Icons.contact_mail),
-                      label: const Text('Nous contacter'),
+                      label: const Text('Contact Us'),
                     ),
                   ),
                 ],
@@ -462,7 +462,7 @@ class _FeaturesPageState extends State<FeaturesPage> {
                               context.go('/contact');
                             },
                             icon: const Icon(Icons.rocket_launch),
-                            label: const Text('Demander une démo'),
+                            label: const Text('Request demo'),
                             style: ElevatedButton.styleFrom(
                               padding: const EdgeInsets.symmetric(vertical: 16),
                             ),

@@ -48,12 +48,12 @@ class _DateRangeFilterWidgetState extends State<DateRangeFilterWidget> {
               spacing: 8,
               runSpacing: 8,
               children: [
-                _buildQuickFilterChip('Dernière heure', _getLastHour),
-                _buildQuickFilterChip('Dernières 6h', _getLast6Hours),
-                _buildQuickFilterChip('Dernières 24h', _getLast24Hours),
-                _buildQuickFilterChip('Dernière semaine', _getLastWeek),
-                _buildQuickFilterChip('Dernier mois', _getLastMonth),
-                _buildQuickFilterChip('Tout', _clearFilter),
+                _buildQuickFilterChip('Last hour', _getLastHour),
+                _buildQuickFilterChip('Last 6h', _getLast6Hours),
+                _buildQuickFilterChip('Last 24h', _getLast24Hours),
+                _buildQuickFilterChip('Last week', _getLastWeek),
+                _buildQuickFilterChip('Last month', _getLastMonth),
+                _buildQuickFilterChip('All', _clearFilter),
               ],
             ),
             
@@ -61,9 +61,9 @@ class _DateRangeFilterWidgetState extends State<DateRangeFilterWidget> {
             const Divider(),
             const SizedBox(height: 16),
             
-            // Sélection de plage personnalisée
+            // Custom range selection
             Text(
-              'Plage personnalisée',
+              'Custom range',
               style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                 fontWeight: FontWeight.w600,
               ),
@@ -250,17 +250,17 @@ class _DateRangeFilterWidgetState extends State<DateRangeFilterWidget> {
     if (_startDate != null && _endDate != null) {
       final duration = _endDate!.difference(_startDate!);
       if (duration.inDays > 0) {
-        return 'Période: ${duration.inDays} jour(s)';
+        return 'Period: ${duration.inDays} day(s)';
       } else if (duration.inHours > 0) {
-        return 'Période: ${duration.inHours} heure(s)';
+        return 'Period: ${duration.inHours} hour(s)';
       } else {
-        return 'Période: ${duration.inMinutes} minute(s)';
+        return 'Period: ${duration.inMinutes} minute(s)';
       }
     } else if (_startDate != null) {
-      return 'Depuis: ${_formatDate(_startDate!)}';
+      return 'Since: ${_formatDate(_startDate!)}';
     } else if (_endDate != null) {
-      return 'Jusqu\'à: ${_formatDate(_endDate!)}';
+      return 'Until: ${_formatDate(_endDate!)}';
     }
-    return '';
+    return 'Select dates';
   }
 }
